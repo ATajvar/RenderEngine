@@ -1,0 +1,7 @@
+Directory for building
+
+Recommended build by running command from root project directory:
+"cd build
+cmake ..
+make"
+
