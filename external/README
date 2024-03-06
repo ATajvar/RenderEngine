@@ -1,0 +1,4 @@
+# external's README
+# additional OpenGL Driver should be pre-existing in any standard OS
+
+stb_image: a header-only library, so we include its directory. We must #include "stb_image.h" directly in source files where needed.

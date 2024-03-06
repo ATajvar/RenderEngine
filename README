@@ -1,0 +1,28 @@
+This overarching document will explain decisions and structures
+to ensure an easy entry to work on the program.
+
+Here is a proposed architecture:
+OpenGLQuickstart/
+├── src/
+│   ├── main.cpp          # Entry point of the application
+│   ├── OpenGLWrapper/    # Abstracts OpenGL-specific functionality
+│   │   ├── Graphics.cpp  # Implementation of graphics rendering
+│   │   └── Graphics.h    # Interface for rendering
+│   ├── Buffer/
+│   │   ├── Buffer.cpp    # Implementation of buffer management
+│   │   └── Buffer.h      # Interface for buffer management
+│   ├── Shader/
+│   │   ├── Shader.cpp    # Shader loading and compilation
+│   │   └── Shader.h      # Interface for shader operations
+│   └── Texture/
+│       ├── Texture.cpp   # Texture loading and application
+│       └── Texture.h     # Interface for texture operations
+├── external/             # External libraries (GLFW, GLAD, stb_image)
+├── assets/               # Store shaders, textures, and other assets
+├── CMakeLists.txt        # Build script for CMake
+├── README.md
+├── CONTRIBUTING.md
+└── .github/
+    ├── workflows/        # GitHub Actions for CI/CD
+    │   └── ci.yml
+    └── PULL_REQUEST_TEMPLATE.md
