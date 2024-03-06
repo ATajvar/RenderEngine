@@ -1,6 +1,17 @@
 This overarching document will explain decisions and structures
 to ensure an easy entry to work on the program.
 
+All external libraries should be included within the repository for ease of access.
+    (OpenGL drivers should be pre-included by default on major OS) -- any problems would be great to report through an issue on GitHub
+
+Major directories may have their own README files (i.e. build):
+    But to build from root directory of project:
+    "cd build
+    cmake ..
+    make"
+
+And to run, open the executable file produced title RenderEngine
+
 Here is a proposed architecture:
 OpenGLQuickstart/
 ├── src/
