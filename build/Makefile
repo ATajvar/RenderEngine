@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/ariant/Documents/RenderEngine/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -84,6 +94,51 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"gmock\" \"gtest\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -141,6 +196,71 @@ glad: cmake_check_build_system
 glad/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/build
 .PHONY : glad/fast
+
+#=============================================================================
+# Target rules for targets named RenderEngine_Test
+
+# Build rule for target.
+RenderEngine_Test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RenderEngine_Test
+.PHONY : RenderEngine_Test
+
+# fast build rule for target.
+RenderEngine_Test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RenderEngine_Test.dir/build.make CMakeFiles/RenderEngine_Test.dir/build
+.PHONY : RenderEngine_Test/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock.dir/build.make external/googletest/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make external/googletest/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest.dir/build.make external/googletest/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f external/googletest/googletest/CMakeFiles/gtest_main.dir/build.make external/googletest/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
 
 external/glad/src/glad.o: external/glad/src/glad.c.o
 .PHONY : external/glad/src/glad.o
@@ -286,6 +406,30 @@ src/Texture/Texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RenderEngine.dir/build.make CMakeFiles/RenderEngine.dir/src/Texture/Texture.cpp.s
 .PHONY : src/Texture/Texture.cpp.s
 
+src/tests/test_main.o: src/tests/test_main.cpp.o
+.PHONY : src/tests/test_main.o
+
+# target to build an object file
+src/tests/test_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RenderEngine_Test.dir/build.make CMakeFiles/RenderEngine_Test.dir/src/tests/test_main.cpp.o
+.PHONY : src/tests/test_main.cpp.o
+
+src/tests/test_main.i: src/tests/test_main.cpp.i
+.PHONY : src/tests/test_main.i
+
+# target to preprocess a source file
+src/tests/test_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RenderEngine_Test.dir/build.make CMakeFiles/RenderEngine_Test.dir/src/tests/test_main.cpp.i
+.PHONY : src/tests/test_main.cpp.i
+
+src/tests/test_main.s: src/tests/test_main.cpp.s
+.PHONY : src/tests/test_main.s
+
+# target to generate assembly for a file
+src/tests/test_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RenderEngine_Test.dir/build.make CMakeFiles/RenderEngine_Test.dir/src/tests/test_main.cpp.s
+.PHONY : src/tests/test_main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -293,9 +437,19 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... RenderEngine"
+	@echo "... RenderEngine_Test"
 	@echo "... glad"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
 	@echo "... external/glad/src/glad.o"
 	@echo "... external/glad/src/glad.i"
 	@echo "... external/glad/src/glad.s"
@@ -314,6 +468,9 @@ help:
 	@echo "... src/Texture/Texture.o"
 	@echo "... src/Texture/Texture.i"
 	@echo "... src/Texture/Texture.s"
+	@echo "... src/tests/test_main.o"
+	@echo "... src/tests/test_main.i"
+	@echo "... src/tests/test_main.s"
 .PHONY : help
 
 

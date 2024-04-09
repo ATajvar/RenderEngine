@@ -396,3 +396,43 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.28.1/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.28.1/share/cmake/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/opt/homebrew/Cellar/cmake/3.28.1/share/cmake/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/opt/homebrew/Cellar/cmake/3.28.1/share/cmake/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "external/googletest/googletest/cmake/internal_utils.cmake:66 (find_package)"
+      - "external/googletest/googletest/CMakeLists.txt:83 (config_compiler_and_linker)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/Users/ariant/Documents/RenderEngine/build/CMakeFiles/CMakeScratch/TryCompile-TOiVML"
+      binary: "/Users/ariant/Documents/RenderEngine/build/CMakeFiles/CMakeScratch/TryCompile-TOiVML"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ariant/Documents/RenderEngine/build/CMakeFiles/CMakeScratch/TryCompile-TOiVML'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a9caa/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_a9caa.dir/build.make CMakeFiles/cmTC_a9caa.dir/build
+        Building C object CMakeFiles/cmTC_a9caa.dir/src.c.o
+        /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -MD -MT CMakeFiles/cmTC_a9caa.dir/src.c.o -MF CMakeFiles/cmTC_a9caa.dir/src.c.o.d -o CMakeFiles/cmTC_a9caa.dir/src.c.o -c /Users/ariant/Documents/RenderEngine/build/CMakeFiles/CMakeScratch/TryCompile-TOiVML/src.c
+        Linking C executable cmTC_a9caa
+        /opt/homebrew/Cellar/cmake/3.28.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a9caa.dir/link.txt --verbose=1
+        /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_a9caa.dir/src.c.o -o cmTC_a9caa 
+        
+      exitCode: 0
+...
