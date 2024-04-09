@@ -1,3 +1,4 @@
+# Deprecated: lack of relevancy to specific project and use case.
 name: C++ CI
 
 on: [push, pull_request]
