@@ -46,3 +46,18 @@ target_link_libraries(${PROJECT_NAME}
 
 # Ensure we have C++17
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+# Google Test integration
+enable_testing()
+add_subdirectory(external/googletest)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+# Test executable
+add_executable(${PROJECT_NAME}_Test
+    src/tests/test_main.cpp
+    # Add other test files and source files as needed
+)
+target_link_libraries(${PROJECT_NAME}_Test gtest gtest_main pthread)
+
+# Add a test to be run with `make test` or `ctest`
+add_test(NAME ${PROJECT_NAME}_Test COMMAND ${PROJECT_NAME}_Test)

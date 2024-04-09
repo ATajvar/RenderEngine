@@ -10,7 +10,7 @@ Major directories may have their own README files (i.e. build):
     cmake ..
     make"
 
-And to run, open the executable file produced title RenderEngine
+And to run, open the executable file produced, titled: RenderEngine
 
 Here is a proposed architecture:
 OpenGLQuickstart/
@@ -37,3 +37,7 @@ OpenGLQuickstart/
     ├── workflows/        # GitHub Actions for CI/CD
     │   └── ci.yml
     └── PULL_REQUEST_TEMPLATE.md
+
+
+OpenGl Examples/References
+https://github.com/eug/awesome-opengl
