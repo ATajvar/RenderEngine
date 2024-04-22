@@ -8,6 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'  # Ensures submodules are checked out
 
     - name: Install dependencies
       run: |
