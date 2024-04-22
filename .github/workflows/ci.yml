@@ -9,14 +9,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        submodules: 'recursive'  # Ensures submodules are checked out
+        submodules: 'recursive'
 
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
-        
-        # Install cppcheck from snap or directly download the latest version if necessary
+
+    - name: Install Cppcheck
+      run: |
         sudo snap install cppcheck --classic
 
     - name: Configure CMake
@@ -32,6 +33,6 @@ jobs:
       run: |
         ctest --output-on-failure
 
-    - name: Run linter on specified directories
+    - name: Run linter on project files
       run: |
-        cppcheck --enable=all --error-exitcode=1 src/ include/
+        cppcheck --enable=all --error-exitcode=1 src/Buffer/ src/OpenGLWrapper/ src/Shader/ src/Texture/ src/Main.cpp tests/
