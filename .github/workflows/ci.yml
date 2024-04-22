@@ -12,10 +12,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev cppcheck
-
-    - name: Setup CMake
-      uses: actions/setup-cmake@v1
+        sudo apt-get install -y cmake libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev cppcheck
 
     - name: Configure CMake
       run: |
