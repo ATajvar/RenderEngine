@@ -14,7 +14,13 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev cppcheck
+        sudo apt-get install -y cmake libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+        
+        # Remove the existing cppcheck from the package manager if it's outdated
+        sudo apt-get remove --auto-remove cppcheck
+
+        # Install cppcheck from snap which provides the latest version
+        sudo snap install cppcheck --classic
 
     - name: Configure CMake
       run: |
@@ -31,4 +37,5 @@ jobs:
 
     - name: Run linter
       run: |
+        # Run cppcheck with exclude option to avoid checking external libraries
         cppcheck --enable=all --error-exitcode=1 --exclude=external .
