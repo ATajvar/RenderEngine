@@ -31,4 +31,4 @@ jobs:
 
     - name: Run linter
       run: |
-        cppcheck --enable=all --error-exitcode=1 .
+        cppcheck --enable=all --error-exitcode=1 --exclude=external .
