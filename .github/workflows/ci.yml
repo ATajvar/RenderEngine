@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        submodules: 'recursive'
+        submodules: 'recursive'  # Ensures submodules are checked out
 
     - name: Install dependencies
       run: |
@@ -35,4 +35,4 @@ jobs:
 
     - name: Run linter on project files
       run: |
-        cppcheck --enable=all --error-exitcode=1 src/Buffer/ src/OpenGLWrapper/ src/Shader/ src/Texture/ src/Main.cpp tests/
+        cppcheck --enable=all --suppress=missingIncludeSystem --error-exitcode=1 src/Buffer/ src/OpenGLWrapper/ src/Shader/ src/Texture/ src/Main.cpp tests/
