@@ -1,4 +1,3 @@
-# Deprecated: lack of relevancy to specific project and use case.
 name: C++ CI
 
 on: [push, pull_request]
@@ -13,23 +12,24 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
-        sudo apt-get install -y cppcheck
-        sudo apt-get install -y google-mock
-        sudo apt-get install -y libgtest-dev
-        cd /usr/src/googletest/googletest
-        sudo cmake .
-        sudo cmake --build . --target install
+        sudo apt-get install -y libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev cppcheck
+
+    - name: Setup CMake
+      uses: actions/setup-cmake@v1
+
+    - name: Configure CMake
+      run: |
+        cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      run: |
+        cmake --build build --config Release
+
+    - name: Test
+      working-directory: build
+      run: |
+        ctest --output-on-failure
 
     - name: Run linter
       run: |
         cppcheck --enable=all --error-exitcode=1 .
-
-    - name: Build
-      run: |
-        g++ -o main main.cpp -lglfw -ldl -pthread
-        g++ -o test_main test_main.cpp -lgtest -lpthread
-
-    - name: Run unit tests
-      run: |
-        ./test_main
