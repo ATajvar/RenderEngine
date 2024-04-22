@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <vector>
 
+// Checking/....
+
 // Example function that you could test
 std::vector<float> getSquareVertices(float size) {
     // Just for example purposes; actual implementation may vary
